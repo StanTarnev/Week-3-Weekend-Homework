@@ -1,9 +1,11 @@
 require_relative('models/film')
 require_relative('models/customer')
 require_relative('models/ticket')
+require_relative('models/screening')
 
 require('pry-byebug')
 
+Screening.delete_all()
 Film.delete_all()
 Customer.delete_all()
 Ticket.delete_all()
@@ -114,6 +116,36 @@ ticket6 = Ticket.new({
 
 ticket6.save()
 ticket6.delete()
+
+screening1 = Screening.new({
+  'film_id' => film1.id,
+  'show_time' => '20:00',
+  'capacity' => 20
+  })
+
+screening2 = Screening.new({
+  'film_id' => film2.id,
+  'show_time' => '18:00',
+  'capacity' => 10
+  })
+
+screening3 = Screening.new({
+  'film_id' => film3.id,
+  'show_time' => '22:00',
+  'capacity' => 30
+  })
+
+screening4 = Screening.new({
+  'film_id' => film1.id,
+  'show_time' => '20:00',
+  'capacity' => 20
+  })
+
+screening5 = Screening.new({
+  'film_id' => film2.id,
+  'show_time' => '18:00',
+  'capacity' => 10
+  })
 
 found_film = Film.find(film2.id)
 found_customer = Customer.find(customer3.id)
