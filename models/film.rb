@@ -46,6 +46,17 @@ class Film
     return result
   end
 
+  def customer_count()
+    sql = "SELECT customers.*
+          FROM customers
+          INNER JOIN tickets
+          ON tickets.customer_id = customers.id
+          WHERE film_id = $1"
+    customers = SqlRunner.run(sql, [@id])
+    result = customers.map {|customer| Customer.new(customer)}
+    return result.count
+  end
+
   def self.delete_all()
     sql = "DELETE FROM films"
     SqlRunner.run(sql)

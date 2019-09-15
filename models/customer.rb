@@ -43,8 +43,21 @@ class Customer
     return result
   end
 
+  def film_count()
+    sql = "SELECT films.*
+          FROM films
+          INNER JOIN tickets
+          ON tickets.film_id = films.id
+          WHERE customer_id = $1"
+    films = SqlRunner.run(sql, [@id])
+    result = films.map {|film| Film.new(film)}
+    return result.count
+  end
+
   def self.order_by_funds()
-    sql = "SELECT * FROM customers ORDER BY customers.funds"
+    sql = "SELECT *
+          FROM customers
+          ORDER BY customers.funds"
     funds = SqlRunner.run(sql, [])
     result = funds.map {|fund| Customer.new(fund)}
     return result
