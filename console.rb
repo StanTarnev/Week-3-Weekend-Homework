@@ -147,6 +147,12 @@ screening5 = Screening.new({
   'capacity' => 10
   })
 
+screening1.save()
+screening2.save()
+screening3.save()
+screening4.save()
+screening5.save()
+
 found_film = Film.find(film2.id)
 found_customer = Customer.find(customer3.id)
 found_ticket = Ticket.find(ticket4.id)
